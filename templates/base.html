@@ -1,0 +1,64 @@
+{% load myfilter %}
+<!DOCTYPE html> 
+<html lang="ja"> 
+<head> 
+  <meta charset="UTF-8">
+  <meta http-equiv="content-script-type" content="text/javascript"/>
+  <meta name = "viewport" content = "width=420"/>
+  <title>{%block title%}{% app_const "APP_NAME" %}{%endblock%}</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/static/css/new-style.css"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico" />
+  <!--[if lt IE 9]
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  {% block meta%}<!--アプリ共通のMeta-->{% endblock %}
+  {% block meta_add%}<!--アプリ内固有ページのMeta-->{% endblock %}
+  <script type="text/javascript">
+    $(function(){
+      {% block script%}
+        <!--固有スクリプト-->
+      {% endblock %}
+    });
+  </script>
+  {% include 'plugin/analytics.html' %}
+</head> 
+<body> 
+<div id="wrapper" class="container">
+
+	<header class="clearfix">    	
+        {% include 'plugin/top_menu.html' %}
+    	<div class="page-header" id="title-area">
+    		<div id="top-logo"><a href="/"><img src="{% app_const 'LOGO_IMG' %}"></a></div>
+    	</div>
+		{%block header%}<!--header-->{%endblock header%}
+	</header>
+	
+	<div id="contents" class="row clearfix">
+    	<div id="main" class="span9">
+    		{%block contents%}<!--contents-->{%endblock contents%}
+    		<div style="margin-left:50px;">
+                {% app_const 'MAIN_ADS' %}
+    		</div>
+    	</div>
+
+    	<div id="sub" class="span3">
+            {%block rightbar-top%}{%endblock rightbar-top%}
+                
+            {% include 'plugin/profile.html' %}
+            {%block rightbar%}<!--plugin-->{%endblock rightbar%}
+    	</div>
+    </div>
+    	
+	<div id="footer">
+		{%block footer%}
+		Copyright(c) 2011-{%now "Y" %} {% app_const "APP_NAME" %}. All Rights Reserved.
+        Powered by <a href="http://kimihiro-n.appspot.com">Kimihiro-n</a>
+		{%endblock footer%}
+	</div>
+	
+</div>	
+</body></html>

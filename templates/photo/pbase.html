@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{%block css%}
+#li-photo{border-bottom:#cccccc 3px solid;}
+{% endblock%}
+
+{%block meta%}
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+{%endblock%}
+
+{%block title%}
+Pistatium Blog
+{%endblock title%}
+
+{%block contents%}
+	{%if login%}
+		<h2>[<a href="/post/">New entry</a>] [<a href="{{logout_url}}">Log out</a>]</h2>
+	{%endif%}
+	
+	<!-- Entry loop-->
+	{%for entry in entries%}
+		<div class="entry">
+			<div class="entryHeader"> 
+				<h2 class="title">
+					<a href="/entry/{{entry.key}}">{{entry.title}}</a>
+					{%if login%}
+						[<a href="/post/{{entry.key}}">edit</a>]
+					{%endif%}
+				</h2>
+				<div class="entryDate">{{entry.formattedDatetimeInJST}}</div>
+			</div>
+			<div class="body">
+				{{entry.formatted_body|safe}}
+			</div>
+			<div class="entryFooter">タグ:
+				{%for tag in entry.tagList%}
+    				<a href="/tag/{{tag}}/0"><span class="tag">{{tag}}</span></a>
+				{%endfor%}
+				
+{%if detail%}<!--##############################################################################-->
+			</div>
+			<h2>コメント</h2>
+			<div class="comments">
+				<a name="comments">
+				{%for comment in entry.comments%}
+					<h3 class="comment">{{comment.nickname}}: {{comment.comment}}
+						<div style="float:right">
+							<form method="post" name="form" action="/deleteComment/{{comment.key}}">
+								<input type="text" name="delpass" class="delcommentpassword"/>
+								<input type="button" onclick="if(confirm('本当に削除しますか？'))form.submit()" value="削除" class="delcommentbutton"/>
+							</form>
+						</div>
+						<br clear="all">
+					</h3>
+				{%endfor%}
+				<div style="width:84px;float:left;font-size:xx-small;position:relative;top:6px;">名前</div>
+				<div style="width:184px;float:left;font-size:xx-small;position:relative;top:6px;">コメント</div>
+				<div style="width:100px;float:left;font-size:xx-small;position:relative;top:6px;">削除パス</div>
+				<br clear="all">
+				<form action="/postComment/{{entry.key}}" method="post" style="padding:0">
+					<input type="text" name="nickname" style="width:80px;">
+					<input type="text" name="comment" style="width:180px;">
+					<input type="text" name="delpass" style="width:50px;">
+					<input type="submit" value="投稿" style="width:50px">
+				</form>
+			</div>
+{%else%}<!--##############################################################################-->
+				<a href="/entry/{{entry.key}}#comments" style="float:right">コメント({{entry.comment_count}})</a>
+			</div>
+{%endif%}<!--##############################################################################-->
+		</div>
+	{%endfor%}
+	<!-- /Entry loop-->
+	
+	<div class="pager">
+		{%if prev or prev == 0 %}
+			[ <a href="{%if tag %}/tag/{{tag}}{%endif%}/{{prev}}"> Prev </a> ]
+		{%endif%}
+		{%if next%}
+			[ <a href="{%if tag %}/tag/{{tag}}{%endif%}/{{next}}"> Next </a> ]
+		{%endif%}
+	</div>
+		
+{%endblock contents%}
+			
+{%block rightbar%}
+	{%if logout_url%}
+	<h2>Admin</h2>
+	<div class="plugin">
+		<ul>
+			<li><a href="/edit/{{book.key.id}}">Edit</a></li>
+			<li><a href="/edit/">New</a></li>
+			<li><a href="{{logout_url}}">logout</a></li>
+			
+		</ul>
+	</div>
+
+	{%endif%}
+	{%if category %}
+		<h2>Category</h2>
+		<div class="plugin">
+			<ul>
+				{% for cat in category %}
+				<li><a href="/category/{{cat}}">{{cat}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{%endblock rightbar%}

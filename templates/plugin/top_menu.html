@@ -1,0 +1,8 @@
+{% load myfilter %}
+<div id="top-menu" class="tabs-below">
+    <ul class="nav nav-tabs">
+        <li id="li-blog"><a href="{% url blog.views.home %}">Blog</a></li>
+            {% app_const 'SEARCH_BOX' %}
+        </li>
+    </ul>
+</div>

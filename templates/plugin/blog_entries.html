@@ -1,0 +1,44 @@
+{% load myfilter %}
+	{% for entry in entries %}
+		
+			<div class="entry">
+					{% if not entries %}
+						<h1>No result.</h1>
+					{% endif%}
+					
+				<h1>
+					{% if not entry.public %}
+                        <span class="private-entry">(Private)</span>
+                    {% endif %}
+					{{ entry.title }} <a href="{%url blog.views.show entry.key.id %}">({{ entry.datetime }})</a></h1>
+				<div class="entry-body">
+					<!--|linebreaks-->
+					{% autoescape off %}
+						{{ entry.body }}
+					{% endautoescape %}
+						
+					{%if entry.more %}
+							 <a href="{%url blog.views.show entry.key.id %}">
+							 	<span class="more-btn">&gt;&gt;Read more...</span>
+							 </a>
+				    {%endif %}
+				    
+					{% if forloop.first%}
+						<div class="entry-ad">
+                            {% app_const "MAIN_ADS" %}
+						</div>
+					{% endif %}
+				</div>
+				    					
+				<div class="entry-data">
+						{%if entry.category %}
+								Category:<a href="{%url blog.views.show entry.category %}">{{entry.category}}</a>
+								 | 
+						{%endif %}
+						
+						{{entry.datetime}}
+					
+				</div>					
+
+			</div>
+	{% endfor %}

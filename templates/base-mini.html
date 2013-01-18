@@ -1,0 +1,44 @@
+{% load myfilter %}
+<!DOCTYPE html> 
+<html lang="ja"> 
+<head> 
+  <meta charset="UTF-8">
+
+  <meta http-equiv="content-script-type" content="text/javascript"/>
+  <meta name = "viewport" content = "width=420"/>
+  <title>{%block title%}{% app_const "APP_NAME" %}{%endblock%}</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  <link href="/static/css/bootstrap.css" type="text/css" rel="stylesheet">
+  <link href="/static/css/bootstrap-responsive.css" type="text/css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/images/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/static/css/new-style.css"/>
+  <!--[if lt IE 9]
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  {% block meta%}
+  {% endblock %}
+
+  <script type="text/javascript">
+    $(function(){
+      {% block script%}
+      {% endblock %}
+    });
+  </script>
+
+  {% include 'plugin/analytics.html' %}
+</head> 
+<body> 
+    {%block contents%}
+        <!--contents-->
+    {%endblock contents%}
+    	
+	<div id="footer">
+		{%block footer%}
+		Copyright(c) 2011-{%now "Y" %} {% app_const "APP_NAME" %}. All Rights Reserved.
+		{%endblock footer%}
+	</div>
+	
+</div>	
+</body></html>

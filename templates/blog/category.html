@@ -1,0 +1,25 @@
+{% extends "blog/bbase.html" %}
+{% load myfilter %}
+
+{%block title%}
+{% for entry in entries %}{% if forloop.first %}Category:{{entry.category}}{% endif %}{% endfor%} #{% app_const 'APP_NAME' %} Blog
+{%endblock title%}
+
+{%block contents%}
+	{% if not entries %}
+		<h1>No Entry.</h1>
+			該当のカテゴリの記事はまだ書かれていません。
+	{% endif%}
+	
+	{% include 'plugin/blog_entries.html' %}
+	
+	<div id="pager">
+		{% if pager.has_previous %}
+			<a href="./{{ pager.previous_page_number}}">{{pager.previous_page_number}}&lt;&lt;</a>
+		{%endif%}
+		 (Page {{pager.number}} of {{pager.paginator.num_pages}}.)  
+		{% if pager.has_next %}
+			<a href="./{{ pager.next_page_number}}">&gt;&gt;{{pager.next_page_number}}</a>
+		{%endif%}
+	</div>
+{%endblock contents%}

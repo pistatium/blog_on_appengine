@@ -1,0 +1,17 @@
+{% extends "blog/bbase.html" %}
+{% load myfilter %}
+
+{%block contents%}
+	{% include 'plugin/blog_entries.html' %}
+	<div class="pager">
+		<ul>
+			{% if pager.has_previous %}
+				<li><a href="./{{ pager.previous_page_number}}">{{pager.previous_page_number}}&lt;&lt;</a></li>
+			{%endif%}
+			<li> (Page {{pager.number}} of {{pager.paginator.num_pages}}.) </li> 
+			{% if pager.has_next %}
+				<li><a href="./{{ pager.next_page_number}}">&gt;&gt;{{pager.next_page_number}}</a></li>
+			{%endif%}
+		</ul>
+	</div>
+{%endblock contents%}

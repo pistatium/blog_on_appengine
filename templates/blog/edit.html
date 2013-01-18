@@ -1,0 +1,40 @@
+{% extends "base-mini.html" %}
+{%block meta%}
+	<script src="/static/ckeditor/ckeditor.js"></script>
+{%endblock%}
+
+{%block contents%}
+<div class="entryForm">
+    <form action="{% url blog_edit entry_id %}" method="POST" name="postentry">
+      {{ form.as_p }}
+      <input type="submit" />
+    </form>
+</div>
+<div id="ajax_status" class="alert alert-info"></div>
+<script>
+    $(function(){
+        $('#id_body').addClass('ckeditor');
+        $('#id_more').addClass('ckeditor');
+        setInterval(function(){
+            var data = $('#id_title').val();
+            $.ajax({
+                type: "POST",
+                url: "{% url blog_ajax_edit entry_id%}",
+                data: {
+                    "title": $("#id_title").val(),
+                    "body": CKEDITOR.instances.id_body.getData(),
+                    "more": CKEDITOR.instances.id_more.getData(),
+                    "category": $("#id_category").val(),
+                    "public": false,
+                },
+                success: function(result){
+                    var date = new Date()
+                    $('#ajax_status').text(date.toLocaleString() +": " + result);
+                },
+                dataType: "text"
+                
+            });
+        },30000);
+    });
+</script>
+{%endblock contents%}

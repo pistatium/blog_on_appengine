@@ -1,0 +1,9 @@
+{% load myfilter %}
+<div class="plugin">
+    <h2>About</h2>
+    <div class="plugin-body">
+        <img src="/static/img/pythoroid.jpg" class="thumbnail" style="width:200px; height:200px;margin:10px;";>
+        <h3>{% app_const 'AUTHOR' %}</h3>
+        {% app_const 'PROFILE_TEXT' %}
+    </div>
+</div>

@@ -1,0 +1,65 @@
+{% load myfilter %}
+	<div class="entry">
+		<h1>
+			{% if not entry.public %}
+				<span class="private-entry">(Private)</span>
+			{% endif %}
+			{{ entry.title }} ({{ entry.datetime }})
+		</h1>
+	
+		<div class="entry-body">
+			{% autoescape off %}
+				{{ entry.body}}
+			{% endautoescape%}
+			
+			<div class="entry-ad">
+				{% app_const 'MAIN_ADS' %}
+			</div>
+			{% autoescape off %}
+				{%if entry.more%}{{ entry.more }}{%endif%}
+			{% endautoescape%}	
+			<div class="entry-ad">
+				{% app_const 'MAIN_ADS' %}
+			</div>
+		</div>
+		<div class="entry-data">
+				{{entry.datetime|date:"r"}}
+				{%if entry.category %}
+					　 | 　 Category:<a href="{% url blog.views.category entry.category %}">{{entry.category}}</a>
+				{%endif %}
+		</div>
+			
+			
+		<div class="ninja_onebutton">
+			<script type="text/javascript">
+				//<![CDATA[
+				(function(d){
+				if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_b32baf59f16466e3d1e47d4260bff3cf)=='undefined'){
+						document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/b32baf59f16466e3d1e47d4260bff3cf'><\/sc"+"ript>");
+				}else{ 
+					window.NINJA_CO_JP_ONETAG_BUTTON_b32baf59f16466e3d1e47d4260bff3cf.ONETAGButton_Load();}
+				})(document);
+				//]]>
+			</script>
+			<span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+		</div>
+
+
+
+		<div class="entry-body">
+			
+			<h2>関連記事</h2>
+			<div class="entry-body">
+				<ul>
+					{% for cat in categories %}
+						{% if entry.key.id != cat.key.id %}
+						<a href="{%url blog.views.show cat.key.id %}"><li>{{ cat.title }}</li></a>
+						{% endif %}
+					{%endfor %}
+				</ul>
+			</div>
+			<div id="pager">
+				<a href="{% url blog.views.home %}">Blog Top</a>
+			</div>
+		</div>
+	</div>

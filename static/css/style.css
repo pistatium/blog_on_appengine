@@ -1,0 +1,275 @@
+/*--- YUI reset -------------------------------------*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{
+	margin:0; padding:0;
+}
+table{
+	border-collapse:collapse; border-spacing:0;
+}
+fieldset, img{
+	border:0;
+}
+address, caption, cite, code, dfn, em, strong, th, var{
+	font-style:normal; font-weight:normal;
+}
+ul{
+	list-style:none;
+}
+ol{
+	list-style-type: decimal-leading-zero;
+	line-height:110%;
+	border-left:#ccc solid 3px;
+}
+caption, th{
+	text-align:left;
+}
+h1, h2, h3, h4, h5, h6{
+	font-size:100%; font-weight:normal;
+}
+q:before, q:after{
+	content:”;
+}
+abbr, acronym{
+	border:0;
+}
+/*---- / YUI reset ---------------------------------------*/
+
+header{
+	height:150px;
+}
+header #top-logo{
+	float:left;
+}
+header #top-menu{
+	//width:420px;
+	float:right;
+	margin-right:50px;
+	margin-top:10px;
+	//padding:10px 0 0 5px;
+	font-weight: bold;
+	font-size:110%;
+}
+#top-menu li{
+	float:left;
+	display:inline-block;
+	//margin:5px 5px;
+	//padding: 0 10px;
+}
+#top-menu li a:hover{
+	//text-decoration:none;
+	//border-bottom:#fb8800 3px solid;
+}
+li.ul{
+	border-bottom:#fb8800 3px solid;
+}
+div#main{
+	//width:700px;
+	//float:left;
+}
+div#sidebar{
+	//width:345px;
+	//float:left;
+}
+footer{
+	clear:both;
+	margin-top:10px;
+	text-align:center;
+	color:#805100;
+}
+div.entry{
+	margin-bottom: 40px;
+	margin-left:50px;
+	line-height:150%;
+}
+div.entryHeader{width:800px;}
+
+div.entryDate{
+    font-size:small;
+    text-align:right;
+    margin-bottom:2px;
+}
+div.entryFooter{
+    margin-top:5px;
+    //font-weight:bold;
+    //font-size:130%;
+    color:#888;
+}
+div.entryBody{
+    font-size:85%;
+    line-height;200%;
+    margin:5px 0px 20px 10px;
+    padding-left:25px;
+    border-left:#808000 3px solid;
+}
+div.entryBody a{
+	font-weight:bold;
+}
+div.entryBody pre{
+	margin-left:-10px;
+}
+div.entryForm{
+	padding:20px;
+	font-size:120%;
+}
+div.entryForm textarea{
+	width:600px;
+	height:300px;
+	margin-left: 30px;
+	margin-bottom: 40px;
+	font-size:100%;
+}
+div.entryForm input{
+	margin-left: 30px;
+	margin-bottom: 40px;
+	display: block;
+	width: 200px;
+}
+
+div.entryForm label {
+	display: block;
+	width: 50px;
+	margin-bottom: 5px;
+	text-align: right;
+	padding-right: 15px;
+	font-weight:bold;
+}
+div.entryAd{
+	padding-top:5px;
+}
+div#products{
+	font-size:90%;
+}
+div#products a:hover{
+	text-decoration:none;
+}
+div#products a{
+	color:#444;
+}
+div#products h2{
+	border:none;
+}
+
+div.product-left{
+	height:200px;
+	border-left:8px solid #aa8;
+	margin:20px 5px;
+	padding:10px 50px 10px 10px;
+	position:relative;
+}
+div.product-left:hover{
+	background:#ffc;
+}
+
+div.product-left img{
+	float:left;
+	height:200px;
+	width:200px;
+	margin-right:10px;
+	display:block;
+}
+div.product-left .p-date{
+	color:#aa8;
+	display:block;
+	position:absolute;
+	bottom:5px;
+	right:10px;
+	font-size:120%;
+}
+div.product-right{
+	height:200px;
+	border-right:8px solid #aa8;
+	margin-bottom:10px;
+	padding:10px 10px 10px 50px;
+	text-align:right;
+	position:relative;
+}
+div.product-right:hover{
+	background:#ffc;
+}
+div.product-right img{
+	float:right;
+	height:200px;
+	width:200px;
+	display:block;
+	margin-left:10px;
+}
+div.product-right .p-date{
+	color:#aa8;
+	display:block;
+	position:absolute;
+	bottom:5px;
+	left:10px;
+	font-size:120%;
+}
+
+div#links{
+	padding:15px;
+}
+div#links a{
+	color:#888;
+}
+
+div#links li{
+	display:block;
+	//margin:5px 0;
+	//padding:5px;
+	width:300px;
+	//border-left:5px solid #aa8;
+}
+
+div#pager{
+	margin:10px 0;
+	padding:5px 20px;
+	font-weight:bold;
+	border-left:#fb8000 8px double;
+
+}
+
+div.plugin{
+	padding:5px 0 10px 15px;
+}
+body{
+	line-height:150%;
+	font-size:110%;
+	font-family:'Century Gothic','メイリオ',Meiryo,'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',Osaka,'ＭＳＰゴシック',sans-serif;
+}
+h1{
+    padding:5px 0 5px 0px;
+    font-weight: bold;
+    font-size:150%;
+    color:#805100;
+    width:800px;
+    margin: 25px 0 0 0;
+}
+h2{
+    padding:1px 0 1px 2px;
+    margin: 0 -0.5em;
+    //border-left:#808000 4px solid;
+    font-size:120%;
+    //font-weight: bold;
+    color:#805100;
+    //margin-bottom:0;
+    //width:98%;
+}
+h3{
+    padding:8px 0 0px 5px;
+    margin: 0 0 -1.3em -10px;
+    border-left:#fb8800 3px solid;
+    font-size: 115%;
+    color:#333;
+    font-weight:bold;
+}
+a {
+	text-decoration: none;
+	color:#fb9900;
+}
+a:hover{
+	text-decoration: underline;
+	color:#cc6600;
+}
+.title a{}
+.delcommentbutton{
+  font-size: xx-small;
+}
+.delcommentpassword{
+  font-size: xx-small;
+}

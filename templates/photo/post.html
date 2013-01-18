@@ -1,0 +1,13 @@
+{% extends "base-mini.html" %}
+{%block contents%}
+<div class="entryForm">
+  {% if form.is_multipart %}
+      <form enctype="multipart/form-data" method="post" action="/photo/post/{{photo_id}}">
+  {% else %}
+      <form method="post" action="/photo/post/{{photo_id}}">
+  {% endif %}
+      {{ form.as_p }}
+      <input type="submit" />
+    </form>
+</div>
+{%endblock contents%}

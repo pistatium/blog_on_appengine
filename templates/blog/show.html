@@ -1,0 +1,24 @@
+{% extends "blog/bbase.html" %}
+{% load myfilter %}
+
+{%block meta_add %}
+    <meta property="og:description" content="{{ entry.body|striptags|truncatewords:2 }}">
+{%endblock%}
+
+{%block title%}
+{{ entry.title }}  #{% app_const 'APP_NAME' %}
+{%endblock title%}
+
+{%block contents%}
+    {%if not entry.public %}
+        {%if not logout_url%}
+            <div class="entry">
+               <h2>該当のエントリーは現在非公開です</h2>
+            </div>
+        {% else %}
+             {% include 'plugin/blog_entry_show.html' %}
+        {% endif %}
+    {% else %}
+        {% include 'plugin/blog_entry_show.html' %}
+    {% endif %}
+{%endblock contents%}

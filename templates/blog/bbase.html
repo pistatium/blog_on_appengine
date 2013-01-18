@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load myfilter %}
+
+{%block script%}
+$("#li-blog").addClass("active");
+{% endblock%}
+
+{%block meta%}
+	<link rel="alternate" type="application/rss+xml" title="{% app_const "BLOG_TITLE" %}" href="{% app_const 'APP_DOMAIN' %}{% url blog.views.rss %}" />
+	<link rel="stylesheet" type="text/css" href="/static/css/sh/shCore.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/css/sh/shThemeDefault.css"/>
+	<script src="/static/js/sh/scripts/shCore.js"></script>
+	<script src="/static/js/sh/scripts/shBrushPython.js"></script>
+	<script src="/static/js/sh/scripts/shBrushXml.js"></script>
+	<script src="/static/js/sh/scripts/shBrushJava.js"></script>
+	<script src="/static/js/sh/scripts/shBrushJScript.js"></script>
+	<script src="/static/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+		SyntaxHighlighter.all()
+	</script>
+	<style>
+    </style>
+    
+    <!--og-->
+    <meta property="og:type" content="blog">
+    <meta property="og:description" content="{% app_const 'BLOG_DESCRIPTION' %}">
+    <meta property="og:image" content="{% app_const "LOGO_IMG" %}">
+    <meta property="og:site_name" content="{% app_const "BLOG_TITLE" %}">
+{%endblock%}
+
+{% block meta_add %}
+    <meta property="og:description" content="{% app_const 'BLOG_DESCRIPTION' %}">
+{% endblock %}
+
+{%block title%}
+{% app_const 'BLOG_TITLE' %} 
+{%endblock title%}
+
+{%block contents%}	
+{%endblock contents%}
+
+{%block rightbar-top %}
+	<div class="plugin">
+		<h2>Instructions</h2>
+        <div class="plugin-body">
+		    <p>
+                {% app_const 'BLOG_DESCRIPTION' %}
+		    </p>
+        </div>
+	</div>
+{%endblock rightbar-top %}
+
+			
+{%block rightbar%}
+	
+	{%if logout_url%}
+	<div class="plugin">
+		<h2>Admin</h2>
+		<div class="plugin-body">
+    		<ul>
+    			<li><a href="{% url blog_edit entry.key.id %}">Edit</a></li>
+    			<li><a href="{% url blog_edit "" %}">New</a></li>
+    			<li><a href="{{logout_url}}">Logout</a></li>
+    		</ul>
+		</div>
+	</div>
+	{%endif%}
+	
+	{%if category %}
+		<div class="plugin">
+			<h2>Category</h2>
+			<div class="plugin-body">
+    			<ul class="">
+    				{% for cat in category %}
+    				<li><a href="{% url blog.views.category cat %}">{{cat}}</a></li>
+    				{% endfor %}
+    			</ul>
+    		</div>
+		</div>
+	{% endif %}
+
+	<div class="plugin">
+		<h2>etc..</h2>
+		<div class="plugin-body">
+    		<ul>
+                <li><a href="{% url blog.views.rss %}" rel="alternate" type="application/rss+xml">RSS</a></li>
+	            {%if not logout_url%}
+    			    <li><a href="{% url blog_edit entry.key.id %}">Admin Login</a></li>
+	            {%endif%}
+    		</ul>
+		</div>
+	</div>
+{%endblock rightbar%}
